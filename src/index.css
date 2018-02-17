@@ -1,15 +1,32 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
 }
 
 .calculator {
-  margin-top: 400px;
-  width: 500px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    margin-top: 100px;
+    padding: 30px;
+    width: 500px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .calculator-output {
+    padding: 20px 0;
+    border-bottom: 1px solid violet;
+}
 
+.calculator-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    padding-top: 30px;
+}
+
+.calculator-button {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: calc(25% - 15px);
+    margin-bottom: 15px;
 }
