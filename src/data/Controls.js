@@ -1,11 +1,13 @@
 const controlsValues = [
     {
         id: 0,
-        text: "("
+        text: "(",
+        value: 'parenthesisOpen'
     },
     {
         id: 1,
         text: ")",
+        value: 'parenthesisClose'
     },
     {
         id: 2,

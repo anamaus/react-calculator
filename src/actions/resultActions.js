@@ -15,7 +15,6 @@ export function calculateResult(result) {
 export function resetCalculator() {
     return {
         type: "RESULT_RESET_CALCULATOR",
-        payload: ''
     }
 }
 
@@ -38,5 +37,35 @@ export function removeLastValue() {
         type: "RESULT_REMOVE_LAST_VALUE",
     }
 }
+
+export function addParenthesis() {
+    return {
+        type: "RESULT_ADD_PARENTHESIS",
+    }
+}
+
+export function subtractParenthesis() {
+    return {
+        type: "RESULT_SUBTRACT_PARENTHESIS",
+    }
+}
+
+export function setCanCloseParenthesis(bool) {
+    return {
+        type: "RESULT_SET_CAN_CLOSE_PARENTHESIS",
+        payload: bool
+    }
+}
+
+export function setLastValue() {
+    return {
+        type: "RESULT_SET_LAST_VALUE",
+        // payload: value
+    }
+}
+
+
+
+
 
 
