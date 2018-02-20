@@ -1,5 +1,5 @@
 import React from 'react';
-import {addValue, allowCalculation, toggleDecimalValue} from "../../../actions/resultActions";
+import {addValue, allowCalculation, setCanCloseParenthesis, toggleDecimalValue} from "../../../actions/resultActions";
 import {connect} from "react-redux";
 
 class Operator extends React.Component {
@@ -10,6 +10,10 @@ class Operator extends React.Component {
         }
 
         this.props.allowCalculation(false);
+
+
+        this.props.setCanCloseParenthesis(false)
+
         this.props.addValue(event.target);
     };
 
@@ -53,6 +57,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         allowCalculation: (bool) => {
             dispatch(allowCalculation(bool))
+        },
+        setCanCloseParenthesis: (bool) => {
+            dispatch(setCanCloseParenthesis(bool))
         },
     }
 };

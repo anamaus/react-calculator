@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from "react-redux";
 
-import {removeLastValue, allowCalculation,setLastValue} from "../../../actions/resultActions";
+import {removeLastValue, allowCalculation, setLastValue, setCanCloseParenthesis} from "../../../actions/resultActions";
 
 class Clear extends React.Component {
 
     clickHandler = () => {
+
         this.props.removeLastValue();
 
         setTimeout(() => {
@@ -14,12 +15,51 @@ class Clear extends React.Component {
             this.props.removeLastValue();
 
 
-            // if (this.props.output.length > 1) {
+            if (this.props.lastValue) {
                 this.props.lastValue.click();
-                console.log(this.props.lastValue.value);
-            // }
+                console.log('LASTVALUE',this.props.lastValue.value);
+            }
+
+            const a = this.props.output;
+
+            let openParenthesis = 0;
+            let closeParenthesis = 0;
+            for (let i = 0; i < a.length; i++) {
+                if (a[i].textContent === "(") {
+                    openParenthesis++;
+                } else if (a[i].textContent === ")") {
+                    closeParenthesis++
+                }
+            }
+            if (openParenthesis === closeParenthesis) {
+                console.log(openParenthesis === closeParenthesis);
+                this.props.setCanCloseParenthesis(false)
+            } else  if (openParenthesis > closeParenthesis) {
+                this.props.setCanCloseParenthesis(true)
+            }
 
         }, 0)
+
+        // setTimeout(() => {
+        //     const a = this.props.output;
+        //
+        //     let openParenthesis = 0;
+        //     let closeParenthesis = 0;
+        //     for (let i = 0; i < a.length; i++) {
+        //         if (a[i].textContent === "(") {
+        //             openParenthesis++;
+        //         } else if (a[i].textContent === ")") {
+        //             closeParenthesis++
+        //         }
+        //     }
+        //    if (openParenthesis === closeParenthesis) {
+        //         console.log(openParenthesis === closeParenthesis);
+        //        this.props.setCanCloseParenthesis(false)
+        //    } else  if (openParenthesis > closeParenthesis) {
+        //        this.props.setCanCloseParenthesis(true)
+        //    }
+        //
+        // }, 0)
 
     };
 
@@ -62,6 +102,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         setLastValue: () => {
             dispatch(setLastValue())
+        },
+        setCanCloseParenthesis: (bool) => {
+            dispatch(setCanCloseParenthesis(bool))
         },
 
 

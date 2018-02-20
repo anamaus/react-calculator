@@ -12,7 +12,7 @@ class ParenthesisClose extends React.Component {
     render() {
         const classes = ['calculator-button'];
 
-        if (!this.props.canCloseParenthesis || this.props.parenthesisCounter === 0) {
+        if (!this.props.canCloseParenthesis || this.props.parenthesisCounter === 0 ) {
             classes.push('calculator-button--disabled')
         }
 

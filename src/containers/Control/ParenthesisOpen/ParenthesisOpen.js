@@ -1,5 +1,5 @@
 import React from 'react';
-import {addParenthesis, addValue, allowCalculation} from "../../../actions/resultActions";
+import {addParenthesis, addValue, allowCalculation, setCanCloseParenthesis} from "../../../actions/resultActions";
 import {connect} from "react-redux";
 
 class ParenthesisOpen extends React.Component {
@@ -7,6 +7,7 @@ class ParenthesisOpen extends React.Component {
     clickHandler = (event) => {
         this.props.addParenthesis();
         this.props.allowOperators(false);
+        this.props.setCanCloseParenthesis(false)
         this.props.addValue(event.target);
     };
 
@@ -33,6 +34,10 @@ const mapDispatchToProps = (dispatch) => {
         addParenthesis: () => {
             dispatch(addParenthesis())
         },
+        setCanCloseParenthesis: (bool) => {
+            dispatch(setCanCloseParenthesis(bool))
+        },
+
     }
 };
 

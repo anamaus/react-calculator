@@ -9,7 +9,10 @@ import math from 'mathjs';
 
 class Equals extends React.Component {
 
+
+
     clickHandler = () => {
+
         if (!this.props.output.length) {
             return;
         }
