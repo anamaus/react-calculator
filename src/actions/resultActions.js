@@ -55,7 +55,6 @@ export const setCanCloseParenthesis = (bool) => {
 export const setLastValue = () => {
     return {
         type: "RESULT_SET_LAST_VALUE",
-        // payload: value
     }
 };
 
@@ -89,6 +88,8 @@ export const checkParenthesisNumber = () => {
 
     };
 };
+
+//TODO Split into multiple actions
 
 
 

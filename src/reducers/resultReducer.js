@@ -59,3 +59,5 @@ const exampleReducer = (state = initialState, action) => {
     }
 };
 export default exampleReducer;
+
+//TODO Split into multiple reducers

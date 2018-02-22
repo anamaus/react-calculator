@@ -47,3 +47,5 @@ const mapStateToProps = (state) => {
 
 //connect connects this react component to redux store
 export default connect(mapStateToProps)(Output);
+
+//TODO Add subtle animation
