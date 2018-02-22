@@ -9,8 +9,14 @@ class Reset extends React.Component {
     };
 
     render() {
+        const classes = ['calculator-button'];
+
+        if ( !this.props.output.length) {
+            classes.push('calculator-button--disabled')
+        }
+
         return (
-            <button className="calculator-button"
+            <button className={classes.join(' ')}
                     value={this.props.value}
                     onClick={this.clickHandler}
             >
@@ -19,6 +25,12 @@ class Reset extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        output: state.resultReducer.output,
+    }
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -29,4 +41,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 //connect connects this react component to redux store
-export default connect(null, mapDispatchToProps)(Reset);
+export default connect(mapStateToProps, mapDispatchToProps)(Reset);

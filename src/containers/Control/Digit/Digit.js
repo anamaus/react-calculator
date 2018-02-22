@@ -1,18 +1,17 @@
 import React from 'react';
 import {connect} from "react-redux";
 
-import { addValue, allowCalculation, setCanCloseParenthesis} from "../../../actions/resultActions";
+import {
+    addValue, allowOperators, checkParenthesisNumber} from "../../../actions/resultActions";
 
 
 class Digit extends React.Component {
 
     clickHandler = (event) => {
-        if(!this.props.calculationAllowed) {
-            this.props.allowOperators(true);
-        }
-        if(this.props.parenthesisCounter !== 0) {
-            this.props.setCanCloseParenthesis(true);
-        }
+        //allow use of operators after a digit
+        this.props.allowOperators(true);
+
+        //add self to output array
         this.props.addValue(event.target);
     };
 
@@ -28,29 +27,19 @@ class Digit extends React.Component {
     }
 }
 
-//set which props from state you need in this component.
-const mapStateToProps = (state) => {
-    return {
-        calculationAllowed: state.resultReducer.calculationAllowed,
-        parenthesisCounter: state.resultReducer.parenthesisCounter,
-    }
-};
-
 //set which actions you need in this component.
 const mapDispatchToProps = (dispatch) => {
     return {
         addValue: (number) => {
-            dispatch(addValue(number))
+            dispatch(addValue(number));
+            dispatch(checkParenthesisNumber());
         },
         allowOperators: (bool) => {
-            dispatch(allowCalculation(bool))
-        },
-        setCanCloseParenthesis: (bool) => {
-            dispatch(setCanCloseParenthesis(bool))
+            dispatch(allowOperators(bool))
         },
 
     }
 };
 
 //connect connects this react component to redux store
-export default connect(mapStateToProps, mapDispatchToProps)(Digit);
+export default connect(null, mapDispatchToProps)(Digit);

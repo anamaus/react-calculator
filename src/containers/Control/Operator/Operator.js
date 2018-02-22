@@ -1,5 +1,8 @@
 import React from 'react';
-import {addValue, allowCalculation, setCanCloseParenthesis, toggleDecimalValue} from "../../../actions/resultActions";
+import {
+    addValue, allowCalculation, allowOperators, checkParenthesisNumber, setCanCloseParenthesis,
+    toggleDecimalValue
+} from "../../../actions/resultActions";
 import {connect} from "react-redux";
 
 class Operator extends React.Component {
@@ -9,19 +12,23 @@ class Operator extends React.Component {
             this.props.toggleDecimalValue(false);
         }
 
-        this.props.allowCalculation(false);
-
-
-        this.props.setCanCloseParenthesis(false)
-
+        //add self to output array
         this.props.addValue(event.target);
+
+        // //disable parenthesis closing right after an operator
+        this.props.setCanCloseParenthesis(false);
+
+        //disable operator after another operator
+        this.props.allowOperators(false);
+
+        //disable calculation right after an operator
+        this.props.allowCalculation(false);
     };
 
     render() {
-
         const classes = ['calculator-button'];
 
-        if (!this.props.calculationAllowed || !this.props.output.length) {
+        if (!this.props.operatorsAllowed || !this.props.output.length) {
             classes.push('calculator-button--disabled')
         }
 
@@ -41,7 +48,7 @@ class Operator extends React.Component {
 const mapStateToProps = (state) => {
     return {
         output: state.resultReducer.output,
-        calculationAllowed: state.resultReducer.calculationAllowed,
+        operatorsAllowed: state.resultReducer.operatorsAllowed,
         decimalEnabled: state.resultReducer.decimalEnabled,
     }
 };
@@ -50,7 +57,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addValue: (number) => {
-            dispatch(addValue(number))
+            dispatch(addValue(number));
+            dispatch(checkParenthesisNumber());
         },
         toggleDecimalValue: (bool) => {
             dispatch(toggleDecimalValue(bool))
@@ -60,6 +68,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         setCanCloseParenthesis: (bool) => {
             dispatch(setCanCloseParenthesis(bool))
+        },
+        allowOperators: (bool) => {
+            dispatch(allowOperators(bool))
         },
     }
 };

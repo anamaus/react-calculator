@@ -17,10 +17,12 @@ class Equals extends React.Component {
             return;
         }
 
+        //get array of entered values
         let output = this.props.output.map(value => {
             return value.value
         });
 
+        //transform array of current values into a sting for calculation
         const currentInput = output.join("");
 
         this.props.calculateResult(math.eval(currentInput));
@@ -29,7 +31,7 @@ class Equals extends React.Component {
     render() {
         const classes = ['calculator-button'];
 
-        if (!this.props.calculationAllowed || !this.props.output.length || this.props.parenthesisCounter !== 0) {
+        if (!this.props.calculationAllowed || !this.props.output.length) {
             classes.push('calculator-button--disabled')
         }
 
@@ -53,7 +55,6 @@ const mapStateToProps = (state) => {
     return {
         output: state.resultReducer.output,
         calculationAllowed: state.resultReducer.calculationAllowed,
-        parenthesisCounter: state.resultReducer.parenthesisCounter,
     }
 };
 

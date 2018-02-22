@@ -22,13 +22,13 @@ class Output extends React.Component {
 
 
         return (
-            <div className="calculator-output">
-                History: {value}
-                <hr/>
-                <p>
-                    Result: {this.props.result}
-                </p>
-
+            <div className="output">
+                <div className='output-result'>
+                     {this.props.result}
+                </div>
+                <div className='output-history'>
+                    {value}
+                </div>
             </div>
         )
     }

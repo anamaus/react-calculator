@@ -1,18 +1,18 @@
 import React from 'react';
-import {addValue, subtractParenthesis} from "../../../actions/resultActions";
+import {addValue, checkParenthesisNumber} from "../../../actions/resultActions";
 import {connect} from "react-redux";
 
 class ParenthesisClose extends React.Component {
 
     clickHandler = (event) => {
+        //add self to output array
         this.props.addValue(event.target);
-        this.props.subtractParenthesis();
     };
 
     render() {
         const classes = ['calculator-button'];
 
-        if (!this.props.canCloseParenthesis || this.props.parenthesisCounter === 0 ) {
+        if (!this.props.canCloseParenthesis ) {
             classes.push('calculator-button--disabled')
         }
 
@@ -30,7 +30,7 @@ class ParenthesisClose extends React.Component {
 //set which props from state you need in this component.
 const mapStateToProps = (state) => {
     return {
-        parenthesisCounter: state.resultReducer.parenthesisCounter,
+        output: state.resultReducer.output,
         canCloseParenthesis: state.resultReducer.canCloseParenthesis
     }
 };
@@ -39,12 +39,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addValue: (number) => {
-            dispatch(addValue(number))
-        },
-        subtractParenthesis: () => {
-            dispatch(subtractParenthesis())
-        },
 
+            dispatch(addValue(number));
+            dispatch(checkParenthesisNumber());
+
+        },
     }
 };
 

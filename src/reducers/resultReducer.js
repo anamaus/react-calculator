@@ -3,7 +3,7 @@ const initialState = {
     result: 0,
     decimalEnabled: false,
     calculationAllowed: true,
-    parenthesisCounter: 0,
+    operatorsAllowed: false,
     canCloseParenthesis: false,
     lastValue: null,
 
@@ -22,12 +22,8 @@ const exampleReducer = (state = initialState, action) => {
                 result: action.payload,
             };
         case "RESULT_RESET_CALCULATOR":
-            return {
-                ...state,
-                output: [],
-                result: 0,
-                decimalEnabled: false,
-            };
+            return initialState;
+
         case "RESULT_TOGGLE_DECIMAL_VALUE":
             return {
                 ...state,
@@ -37,6 +33,11 @@ const exampleReducer = (state = initialState, action) => {
             return {
                 ...state,
                 calculationAllowed: action.payload
+            };
+        case "RESULT_ALLOW_OPERATORS":
+            return {
+                ...state,
+                operatorsAllowed: action.payload
             };
         case "RESULT_REMOVE_LAST_VALUE":
             return {
@@ -49,22 +50,12 @@ const exampleReducer = (state = initialState, action) => {
                 lastValue: state.output[state.output.length - 1]
 
             };
-        case "RESULT_ADD_PARENTHESIS":
-            return {
-                ...state,
-                parenthesisCounter: state.parenthesisCounter + 1,
-            };
-        case "RESULT_SUBTRACT_PARENTHESIS":
-            return {
-                ...state,
-                parenthesisCounter: state.parenthesisCounter - 1,
-            };
         case "RESULT_SET_CAN_CLOSE_PARENTHESIS":
             return {
                 ...state,
                 canCloseParenthesis: action.payload,
             };
+        default: return state;
     }
-    return state;
 };
 export default exampleReducer;
