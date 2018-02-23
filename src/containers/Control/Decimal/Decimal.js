@@ -1,7 +1,9 @@
 import React from 'react';
 import {connect} from "react-redux";
+import PropTypes from 'prop-types';
 
-import {addValue, toggleDecimalValue, allowCalculation} from "../../../actions/resultActions";
+import {addValue} from "../../../actions/resultActions";
+import {toggleDecimalValue, allowCalculation} from "../../../actions/controlsActions";
 
 
 class Decimal extends React.Component {
@@ -52,9 +54,15 @@ const mapDispatchToProps = (dispatch) => {
 //set which props from state you need in this component.
 const mapStateToProps = (state) => {
     return {
-        decimalEnabled: state.resultReducer.decimalEnabled,
+        decimalEnabled: state.controlsReducer.decimalEnabled,
     }
 };
 
 //connect connects this react component to redux store
 export default connect(mapStateToProps, mapDispatchToProps)(Decimal);
+
+Decimal.propTypes = {
+    addValue: PropTypes.func.isRequired,
+    allowOperators: PropTypes.func.isRequired,
+    toggleDecimalValue: PropTypes.func.isRequired,
+};

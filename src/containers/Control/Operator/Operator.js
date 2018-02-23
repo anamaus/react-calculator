@@ -1,8 +1,8 @@
 import React from 'react';
-import {
-    addValue, allowCalculation, allowOperators, checkParenthesisNumber, setCanCloseParenthesis,
-    toggleDecimalValue
-} from "../../../actions/resultActions";
+import PropTypes from 'prop-types';
+
+import {addValue} from "../../../actions/resultActions";
+import {allowCalculation, allowOperators, checkParenthesisNumber, setCanCloseParenthesis, toggleDecimalValue} from "../../../actions/controlsActions";
 import {connect} from "react-redux";
 
 class Operator extends React.Component {
@@ -26,7 +26,7 @@ class Operator extends React.Component {
     };
 
     render() {
-        const classes = ['calculator-button'];
+        const classes = ['calculator-button', 'calculator-button--accented'];
 
         if (!this.props.operatorsAllowed || !this.props.output.length) {
             classes.push('calculator-button--disabled')
@@ -48,8 +48,8 @@ class Operator extends React.Component {
 const mapStateToProps = (state) => {
     return {
         output: state.resultReducer.output,
-        operatorsAllowed: state.resultReducer.operatorsAllowed,
-        decimalEnabled: state.resultReducer.decimalEnabled,
+        operatorsAllowed: state.controlsReducer.operatorsAllowed,
+        decimalEnabled: state.controlsReducer.decimalEnabled,
     }
 };
 
@@ -77,3 +77,14 @@ const mapDispatchToProps = (dispatch) => {
 
 //connect connects this react component to redux store
 export default connect(mapStateToProps, mapDispatchToProps)(Operator);
+
+Operator.propTypes = {
+    output: PropTypes.array,
+    operatorsAllowed: PropTypes.bool,
+    decimalEnabled: PropTypes.bool,
+    addValue: PropTypes.func.isRequired,
+    toggleDecimalValue: PropTypes.func.isRequired,
+    allowCalculation: PropTypes.func.isRequired,
+    setCanCloseParenthesis: PropTypes.func.isRequired,
+    allowOperators: PropTypes.func.isRequired,
+};

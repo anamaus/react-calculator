@@ -1,5 +1,9 @@
 import React from 'react';
-import {addValue, allowOperators, checkParenthesisNumber, setCanCloseParenthesis} from "../../../actions/resultActions";
+import PropTypes from 'prop-types';
+
+import {addValue} from "../../../actions/resultActions";
+import { allowOperators, checkParenthesisNumber, setCanCloseParenthesis} from "../../../actions/controlsActions";
+
 import {connect} from "react-redux";
 
 class ParenthesisOpen extends React.Component {
@@ -41,3 +45,10 @@ const mapDispatchToProps = (dispatch) => {
 
 //connect connects this react component to redux store
 export default connect(null, mapDispatchToProps)(ParenthesisOpen);
+
+ParenthesisOpen.propTypes = {
+    addValue: PropTypes.func.isRequired,
+    allowOperators: PropTypes.func.isRequired,
+    setCanCloseParenthesis: PropTypes.func.isRequired,
+
+};

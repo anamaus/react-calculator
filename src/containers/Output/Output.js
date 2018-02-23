@@ -1,18 +1,18 @@
 import React from 'react';
 import {connect} from "react-redux";
+import PropTypes from 'prop-types';
 
 class Output extends React.Component {
 
-    render () {
+    render() {
         console.log(this.props);
-
 
         const {output} = this.props;
 
         let outputValues;
         let value = '0';
 
-        if(output && output.length) {
+        if (output && output.length) {
             outputValues = output.map(value => {
                 return value.value
             });
@@ -20,11 +20,10 @@ class Output extends React.Component {
             value = outputValues.join("");
         }
 
-
         return (
             <div className="output">
                 <div className='output-result'>
-                     {this.props.result}
+                    {this.props.result}
                 </div>
                 <div className='output-history'>
                     {value}
@@ -44,8 +43,13 @@ const mapStateToProps = (state) => {
     }
 };
 
-
 //connect connects this react component to redux store
 export default connect(mapStateToProps)(Output);
+
+Output.propTypes = {
+    output: PropTypes.array,
+    result: PropTypes.number,
+
+};
 
 //TODO Add subtle animation

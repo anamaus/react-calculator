@@ -186,5 +186,3 @@ const mapDispatchToProps = (dispatch) => {
 //connect connects this react component to redux store
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
-//if there is only 1 or 2 actions we dont need mapDispatchToProps:
-// export default connect(mapStateToProps, {setName})(App);

@@ -28,7 +28,7 @@ const Controls = () => {
             <Digit text='4' value='4'/>
             <Digit text='5' value='5'/>
             <Digit text='6' value='6'/>
-            <Operator text='*' value='*'/>
+            <Operator text='x' value='*'/>
 
             <Digit text='1' value='1'/>
             <Digit text='2' value='2'/>

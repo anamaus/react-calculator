@@ -4,12 +4,15 @@ body {
     font-family: sans-serif;
 
     color: #7C7877;
+
+    background: #00C9FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #92FE9D, #00C9FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #92FE9D, #00C9FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .calculator {
-    margin-top: 100px;
-    padding: 30px;
-    width: 500px;
+    margin: 100px auto 0;
+    width: 300px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
@@ -18,7 +21,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
 
-    margin-top: 30px;
+    background-color: #fff;
 }
 
 .calculator-button {
@@ -30,16 +33,17 @@ body {
     padding: 15px 10px;
 
     font-size: 20px;
-    font-weight: bold;
 
-    background: white;
-    border-color: #f0f0f0;
+    background: #fff;
+
+    border-color: rgba(97, 229, 204, 0.10);
+    border-radius: 0;
 
     transition: background .2s;
 }
 
 .calculator-button:hover {
-    background: #9DCE5C;
+    background: rgba(97, 229, 204, 0.36);
 }
 
 .calculator-button:focus {
@@ -51,19 +55,22 @@ body {
     color: #dedede;
 }
 
+.calculator-button--accented {
+    background: rgba(97, 229, 204, 0.36);
+}
+
 .output {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    word-break: break-all;
-    padding-bottom: 30px;
-    border-bottom: 1px solid #9DCE5C;
-}
 
-.output-history {
+    padding: 20px;
+    background-color: #fff;
 }
 
 .output-result {
-    font-size: 30px;
-    margin-bottom: 15px;
+    font-size: 36px;
+    margin-bottom: 10px;
 }
+
+/*TODO Choose a different way of styling components*/

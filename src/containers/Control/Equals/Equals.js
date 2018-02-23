@@ -2,6 +2,8 @@ import React from 'react';
 
 import {connect} from "react-redux";
 
+import PropTypes from 'prop-types';
+
 import {calculateResult} from "../../../actions/resultActions";
 
 //import library for calculations
@@ -54,7 +56,7 @@ class Equals extends React.Component {
 const mapStateToProps = (state) => {
     return {
         output: state.resultReducer.output,
-        calculationAllowed: state.resultReducer.calculationAllowed,
+        calculationAllowed: state.controlsReducer.calculationAllowed,
     }
 };
 
@@ -69,3 +71,10 @@ const mapDispatchToProps = (dispatch) => {
 
 //connect connects this react component to redux store
 export default connect(mapStateToProps, mapDispatchToProps)(Equals);
+
+
+Equals.propTypes = {
+    output: PropTypes.array,
+    calculationAllowed: PropTypes.bool,
+    calculateResult: PropTypes.func.isRequired,
+};

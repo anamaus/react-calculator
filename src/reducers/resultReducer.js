@@ -1,15 +1,11 @@
 const initialState = {
     output: [],
     result: 0,
-    decimalEnabled: false,
-    calculationAllowed: true,
-    operatorsAllowed: false,
-    canCloseParenthesis: false,
-    lastValue: null,
+    lastValue: {},
 
 };
 
-const exampleReducer = (state = initialState, action) => {
+const resultReducer = (state = initialState, action) => {
     switch (action.type) {
         case "RESULT_ADD_VALUE":
             return {
@@ -24,21 +20,6 @@ const exampleReducer = (state = initialState, action) => {
         case "RESULT_RESET_CALCULATOR":
             return initialState;
 
-        case "RESULT_TOGGLE_DECIMAL_VALUE":
-            return {
-                ...state,
-                decimalEnabled: action.payload
-            };
-        case "RESULT_ALLOW_CALCULATION":
-            return {
-                ...state,
-                calculationAllowed: action.payload
-            };
-        case "RESULT_ALLOW_OPERATORS":
-            return {
-                ...state,
-                operatorsAllowed: action.payload
-            };
         case "RESULT_REMOVE_LAST_VALUE":
             return {
                 ...state,
@@ -50,14 +31,10 @@ const exampleReducer = (state = initialState, action) => {
                 lastValue: state.output[state.output.length - 1]
 
             };
-        case "RESULT_SET_CAN_CLOSE_PARENTHESIS":
-            return {
-                ...state,
-                canCloseParenthesis: action.payload,
-            };
+
         default: return state;
     }
 };
-export default exampleReducer;
+export default resultReducer;
 
-//TODO Split into multiple reducers
+

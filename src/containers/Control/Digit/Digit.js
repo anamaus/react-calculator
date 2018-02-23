@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from "react-redux";
+import PropTypes from 'prop-types';
 
-import {
-    addValue, allowOperators, checkParenthesisNumber} from "../../../actions/resultActions";
+import {addValue} from "../../../actions/resultActions";
+import { allowOperators, checkParenthesisNumber} from "../../../actions/controlsActions";
 
 
 class Digit extends React.Component {
@@ -43,3 +44,8 @@ const mapDispatchToProps = (dispatch) => {
 
 //connect connects this react component to redux store
 export default connect(null, mapDispatchToProps)(Digit);
+
+Digit.propTypes = {
+    addValue: PropTypes.func.isRequired,
+    allowOperators: PropTypes.func.isRequired,
+};

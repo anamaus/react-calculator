@@ -1,7 +1,9 @@
 import React from 'react';
 import {connect} from "react-redux";
+import PropTypes from 'prop-types';
 
-import {removeLastValue, allowCalculation, setLastValue, setCanCloseParenthesis} from "../../../actions/resultActions";
+import {removeLastValue, setLastValue} from "../../../actions/resultActions";
+import {allowCalculation, setCanCloseParenthesis} from "../../../actions/controlsActions";
 
 class Clear extends React.Component {
 
@@ -22,7 +24,6 @@ class Clear extends React.Component {
     };
 
     render() {
-
         const classes = ['calculator-button'];
 
         if ( !this.props.output.length) {
@@ -34,7 +35,7 @@ class Clear extends React.Component {
                     value={this.props.value}
                     onClick={this.clickHandler}
             >
-                C
+                &#x219C;
             </button>
         )
     }
@@ -71,3 +72,13 @@ const mapDispatchToProps = (dispatch) => {
 
 //connect connects this react component to redux store
 export default connect(mapStateToProps, mapDispatchToProps)(Clear);
+
+Clear.propTypes = {
+    output: PropTypes.array.isRequired,
+    lastValue: PropTypes.object,
+    removeLastValue: PropTypes.func.isRequired,
+    allowCalculation: PropTypes.func.isRequired,
+    setLastValue: PropTypes.func.isRequired,
+    setCanCloseParenthesis: PropTypes.func.isRequired,
+
+};

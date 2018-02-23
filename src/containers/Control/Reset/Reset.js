@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {resetCalculator} from "../../../actions/resultActions";
 import {connect} from "react-redux";
 
@@ -20,7 +22,7 @@ class Reset extends React.Component {
                     value={this.props.value}
                     onClick={this.clickHandler}
             >
-                CA
+                C
             </button>
         )
     }
@@ -42,3 +44,9 @@ const mapDispatchToProps = (dispatch) => {
 
 //connect connects this react component to redux store
 export default connect(mapStateToProps, mapDispatchToProps)(Reset);
+
+Reset.propTypes = {
+    output: PropTypes.array.isRequired,
+    reset: PropTypes.func.isRequired,
+
+};

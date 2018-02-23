@@ -1,6 +1,9 @@
 import React from 'react';
-import {addValue, checkParenthesisNumber} from "../../../actions/resultActions";
 import {connect} from "react-redux";
+import PropTypes from 'prop-types';
+
+import {addValue} from "../../../actions/resultActions";
+import {checkParenthesisNumber} from "../../../actions/controlsActions";
 
 class ParenthesisClose extends React.Component {
 
@@ -31,7 +34,7 @@ class ParenthesisClose extends React.Component {
 const mapStateToProps = (state) => {
     return {
         output: state.resultReducer.output,
-        canCloseParenthesis: state.resultReducer.canCloseParenthesis
+        canCloseParenthesis: state.controlsReducer.canCloseParenthesis
     }
 };
 
@@ -49,3 +52,10 @@ const mapDispatchToProps = (dispatch) => {
 
 //connect connects this react component to redux store
 export default connect(mapStateToProps, mapDispatchToProps)(ParenthesisClose);
+
+ParenthesisClose.propTypes = {
+    output: PropTypes.array,
+    canCloseParenthesis: PropTypes.bool,
+    decimalEnabled: PropTypes.bool,
+    addValue: PropTypes.func.isRequired,
+};
