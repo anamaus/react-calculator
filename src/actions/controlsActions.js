@@ -1,3 +1,5 @@
+import  {isParenthesisNumberEqual } from '../utils/isParenthesisNumberEqual';
+
 export const toggleDecimalValue = (bool) => {
     return {
         type: "CONTROLS_TOGGLE_DECIMAL_VALUE",
@@ -26,7 +28,6 @@ export const setCanCloseParenthesis = (bool) => {
     }
 };
 
-
 export const checkParenthesisNumber = () => {
     return (dispatch, getState) => {
         const {output} = getState().resultReducer;
@@ -35,21 +36,10 @@ export const checkParenthesisNumber = () => {
            If the number is equal, we have all parenthesis closed
            And we can allow calculation and disable closing parenthesis
          */
-        let openParenthesis = 0;
-        let closeParenthesis = 0;
-
-        for (let i = 0; i < output.length; i++) {
-            if (output[i].textContent === "(") {
-                openParenthesis++;
-            } else if (output[i].textContent === ")") {
-                closeParenthesis++
-            }
-        }
-
-        if (openParenthesis === closeParenthesis) {
+        if(isParenthesisNumberEqual(output)){
             dispatch(setCanCloseParenthesis(false));
             dispatch(allowCalculation(true));
-        } else if (openParenthesis > closeParenthesis) {
+        } else {
             dispatch(setCanCloseParenthesis(true));
             dispatch(allowCalculation(false));
         }

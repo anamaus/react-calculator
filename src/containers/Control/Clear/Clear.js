@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {removeLastValue, setLastValue} from "../../../actions/resultActions";
 import {allowCalculation, setCanCloseParenthesis} from "../../../actions/controlsActions";
 
-class Clear extends React.Component {
+export class Clear extends React.Component {
 
     clickHandler = () => {
 
