@@ -9,12 +9,20 @@ import ParenthesisClose from '../../containers/Control/ParenthesisClose/Parenthe
 import ParenthesisOpen from '../../containers/Control/ParenthesisOpen/ParenthesisOpen';
 import Reset from '../../containers/Control/Reset/Reset';
 
+import styled from 'styled-components';
 
+const ControlsWrapper = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    background-color: #fff;
+`;
 
 const Controls = () => {
 
     return (
-        <div className="calculator-controls">
+        <ControlsWrapper>
             <ParenthesisOpen />
             <ParenthesisClose />
             <Reset />
@@ -40,7 +48,7 @@ const Controls = () => {
             <Equals />
             <Operator text='+' value='+'/>
 
-        </div>
+        </ControlsWrapper>
     )
 };
 

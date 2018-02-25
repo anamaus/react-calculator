@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 
 import {calculateResult} from "../../../actions/resultActions";
+import Control from '../../../components/Control/Control';
 
 //import library for calculations
 import math from 'mathjs';
@@ -31,20 +32,8 @@ export class Equals extends React.Component {
     };
 
     render() {
-        const classes = ['calculator-button'];
-
-        if (!this.props.calculationAllowed) {
-            classes.push('calculator-button--disabled')
-        }
-
         return (
-            <button className={classes.join(' ')}
-                    value='='
-                    onClick={this.clickHandler}
-
-            >
-                =
-            </button>
+            <Control text='=' value='=' clickHandler={this.clickHandler} disabled={!this.props.calculationAllowed}/>
         )
     }
 

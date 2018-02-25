@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {addValue} from "../../../actions/resultActions";
 import {toggleDecimalValue, allowCalculation} from "../../../actions/controlsActions";
 
+import Control from '../../../components/Control/Control';
 
 export class Decimal extends React.Component {
 
@@ -18,20 +19,8 @@ export class Decimal extends React.Component {
     };
 
     render() {
-
-        const classes = ['calculator-button'];
-
-        if (this.props.decimalAdded) {
-            classes.push('calculator-button--disabled')
-        }
-
         return (
-            <button className={classes.join(' ')}
-                    value='.'
-                    onClick={this.clickHandler}
-            >
-                .
-            </button>
+            <Control text='.' value='.' clickHandler={this.clickHandler} disabled={this.props.decimalAdded}/>
         )
     }
 }

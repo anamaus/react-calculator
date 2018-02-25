@@ -5,6 +5,8 @@ import {addValue} from "../../../actions/resultActions";
 import {allowCalculation, allowOperators, checkParenthesisNumber, setCanCloseParenthesis, toggleDecimalValue} from "../../../actions/controlsActions";
 import {connect} from "react-redux";
 
+import Control from '../../../components/Control/Control';
+
 export class Operator extends React.Component {
 
     clickHandler = (event) => {
@@ -26,19 +28,14 @@ export class Operator extends React.Component {
     };
 
     render() {
-        const classes = ['calculator-button', 'calculator-button--accented'];
-
-        if (!this.props.operatorsAllowed) {
-            classes.push('calculator-button--disabled')
-        }
-
         return (
-            <button className={classes.join(' ')}
-                    value={this.props.value}
-                    onClick={this.clickHandler}
-            >
-                {this.props.text}
-            </button>
+            <Control
+                text={this.props.text}
+                value={this.props.value}
+                clickHandler={this.clickHandler}
+                disabled={!this.props.operatorsAllowed}
+                accented
+            />
         )
     }
 }

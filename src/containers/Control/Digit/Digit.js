@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 
+import Control from '../../../components/Control/Control';
+
 import {addValue} from "../../../actions/resultActions";
 import { allowOperators, checkParenthesisNumber} from "../../../actions/controlsActions";
 
@@ -18,12 +20,7 @@ class Digit extends React.Component {
 
     render() {
         return (
-            <button className="calculator-button"
-                    value={this.props.value}
-                    onClick={this.clickHandler}
-            >
-                {this.props.text}
-            </button>
+            <Control text={this.props.text} value={this.props.value} clickHandler={this.clickHandler} />
         )
     }
 }

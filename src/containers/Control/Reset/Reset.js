@@ -5,26 +5,16 @@ import {resetResult} from "../../../actions/resultActions";
 import {resetControls} from "../../../actions/controlsActions";
 import {connect} from "react-redux";
 
-export class Reset extends React.Component {
+import Control from '../../../components/Control/Control';
 
+export class Reset extends React.Component {
     clickHandler = () => {
         this.props.reset();
     };
 
     render() {
-        const classes = ['calculator-button'];
-
-        if (!this.props.output.length) {
-            classes.push('calculator-button--disabled')
-        }
-
         return (
-            <button className={classes.join(' ')}
-                    value={this.props.value}
-                    onClick={this.clickHandler}
-            >
-                C
-            </button>
+            <Control text='C' value='C' clickHandler={this.clickHandler} disabled={!this.props.output.length}/>
         )
     }
 }

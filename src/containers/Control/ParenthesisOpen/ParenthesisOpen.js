@@ -1,10 +1,11 @@
 import React from 'react';
+import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 
 import {addValue} from "../../../actions/resultActions";
 import { allowOperators, checkParenthesisNumber, setCanCloseParenthesis} from "../../../actions/controlsActions";
 
-import {connect} from "react-redux";
+import Control from '../../../components/Control/Control';
 
 class ParenthesisOpen extends React.Component {
 
@@ -16,12 +17,11 @@ class ParenthesisOpen extends React.Component {
 
     render() {
         return (
-            <button className="calculator-button"
-                    value='('
-                    onClick={this.clickHandler}
-            >
-                (
-            </button>
+            <Control
+                text='('
+                value='('
+                clickHandler={this.clickHandler}
+            />
         )
     }
 }

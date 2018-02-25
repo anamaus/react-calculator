@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import {removeLastValue, setLastValue} from "../../../actions/resultActions";
 import {allowCalculation, setCanCloseParenthesis} from "../../../actions/controlsActions";
 
+import Control from '../../../components/Control/Control';
+
 export class Clear extends React.Component {
 
     clickHandler = () => {
@@ -24,19 +26,8 @@ export class Clear extends React.Component {
     };
 
     render() {
-        const classes = ['calculator-button'];
-
-        if (!this.props.output.length) {
-            classes.push('calculator-button--disabled')
-        }
-
         return (
-            <button className={classes.join(' ')}
-                    value={this.props.value}
-                    onClick={this.clickHandler}
-            >
-                &#x219C;
-            </button>
+            <Control text='&#x219C;' value='clear' clickHandler={this.clickHandler} disabled={!this.props.output.length}/>
         )
     }
 }

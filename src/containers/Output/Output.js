@@ -2,12 +2,12 @@ import React from 'react';
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 
+import OutputComponent from '../../components/Output/Output';
+
 class Output extends React.Component {
 
     render() {
-        console.log(this.props);
-
-        const {output} = this.props;
+        const {output, result} = this.props;
 
         let outputValues;
         let value = '0';
@@ -21,14 +21,7 @@ class Output extends React.Component {
         }
 
         return (
-            <div className="output">
-                <div className='output-result'>
-                    {this.props.result}
-                </div>
-                <div className='output-history'>
-                    {value}
-                </div>
-            </div>
+            <OutputComponent value={value} result={result} />
         )
     }
 
@@ -51,5 +44,3 @@ Output.propTypes = {
     result: PropTypes.number,
 
 };
-
-//TODO Add subtle animation

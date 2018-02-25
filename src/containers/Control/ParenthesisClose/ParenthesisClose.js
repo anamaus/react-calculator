@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import {addValue} from "../../../actions/resultActions";
 import {checkParenthesisNumber} from "../../../actions/controlsActions";
 
+import Control from '../../../components/Control/Control';
+
 export class ParenthesisClose extends React.Component {
 
     clickHandler = (event) => {
@@ -13,19 +15,13 @@ export class ParenthesisClose extends React.Component {
     };
 
     render() {
-        const classes = ['calculator-button'];
-
-        if (!this.props.canCloseParenthesis ) {
-            classes.push('calculator-button--disabled')
-        }
-
         return (
-            <button className={classes.join(' ')}
-                    value=')'
-                    onClick={this.clickHandler}
-            >
-                )
-            </button>
+            <Control
+                text=')'
+                value=')'
+                clickHandler={this.clickHandler}
+                disabled={!this.props.canCloseParenthesis}
+            />
         )
     }
 }
