@@ -23,7 +23,6 @@ const OutputResult = styled.div`
 `;
 
 const Output = (props) => {
-
     return (
         <OutputWrapper>
             <OutputResult>

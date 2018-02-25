@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 
-import {removeLastValue, setLastValue} from "../../../actions/resultActions";
-import {allowCalculation, setCanCloseParenthesis} from "../../../actions/controlsActions";
+import {removeLastValue, setLastValue, resetResult} from "../../../actions/resultActions";
+import {allowCalculation, setCanCloseParenthesis, resetControls} from "../../../actions/controlsActions";
 
 import Control from '../../../components/Control/Control';
 
@@ -20,6 +20,8 @@ export class Clear extends React.Component {
 
             if (this.props.lastValue) {
                 this.props.lastValue.click();
+            } else {
+                this.props.resetCalculator();
             }
 
         }, 0)
@@ -27,7 +29,12 @@ export class Clear extends React.Component {
 
     render() {
         return (
-            <Control text='&#x219C;' value='clear' clickHandler={this.clickHandler} disabled={!this.props.output.length}/>
+            <Control
+                text='&#x219C;'
+                value='clear'
+                clickHandler={this.clickHandler}
+                disabled={!this.props.output.length}
+            />
         )
     }
 }
@@ -54,6 +61,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         setCanCloseParenthesis: (bool) => {
             dispatch(setCanCloseParenthesis(bool))
+        },
+        resetCalculator: () => {
+            dispatch(resetControls());
+            dispatch(resetResult());
         },
 
 
