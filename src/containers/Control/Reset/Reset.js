@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {resetCalculator} from "../../../actions/resultActions";
+import {resetResult} from "../../../actions/resultActions";
+import {resetControls} from "../../../actions/controlsActions";
 import {connect} from "react-redux";
 
-class Reset extends React.Component {
+export class Reset extends React.Component {
 
     clickHandler = () => {
         this.props.reset();
@@ -13,7 +14,7 @@ class Reset extends React.Component {
     render() {
         const classes = ['calculator-button'];
 
-        if ( !this.props.output.length) {
+        if (!this.props.output.length) {
             classes.push('calculator-button--disabled')
         }
 
@@ -37,7 +38,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         reset: () => {
-            dispatch(resetCalculator())
+            dispatch(resetResult());
+            dispatch(resetControls());
         },
     }
 };
@@ -46,7 +48,7 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(Reset);
 
 Reset.propTypes = {
-    output: PropTypes.array.isRequired,
-    reset: PropTypes.func.isRequired,
+    output: PropTypes.array,
+    reset: PropTypes.func,
 
 };

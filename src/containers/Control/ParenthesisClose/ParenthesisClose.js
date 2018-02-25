@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {addValue} from "../../../actions/resultActions";
 import {checkParenthesisNumber} from "../../../actions/controlsActions";
 
-class ParenthesisClose extends React.Component {
+export class ParenthesisClose extends React.Component {
 
     clickHandler = (event) => {
         //add self to output array
@@ -56,6 +56,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(ParenthesisClose);
 ParenthesisClose.propTypes = {
     output: PropTypes.array,
     canCloseParenthesis: PropTypes.bool,
-    decimalEnabled: PropTypes.bool,
-    addValue: PropTypes.func.isRequired,
+    decimalAdded: PropTypes.bool,
+    addValue: PropTypes.func,
 };

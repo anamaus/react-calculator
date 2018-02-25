@@ -17,7 +17,7 @@ const resultReducer = (state = initialState, action) => {
                 ...state,
                 result: action.payload,
             };
-        case "RESULT_RESET_CALCULATOR":
+        case "RESULT_RESET_RESULT":
             return initialState;
 
         case "RESULT_REMOVE_LAST_VALUE":

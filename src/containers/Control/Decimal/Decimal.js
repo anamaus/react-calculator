@@ -6,10 +6,10 @@ import {addValue} from "../../../actions/resultActions";
 import {toggleDecimalValue, allowCalculation} from "../../../actions/controlsActions";
 
 
-class Decimal extends React.Component {
+export class Decimal extends React.Component {
 
     clickHandler = (event) => {
-        if(!this.props.decimalEnabled) {
+        if(!this.props.decimalAdded) {
             this.props.toggleDecimalValue(true);
             this.props.allowOperators(false);
         }
@@ -21,7 +21,7 @@ class Decimal extends React.Component {
 
         const classes = ['calculator-button'];
 
-        if (this.props.decimalEnabled) {
+        if (this.props.decimalAdded) {
             classes.push('calculator-button--disabled')
         }
 
@@ -54,7 +54,7 @@ const mapDispatchToProps = (dispatch) => {
 //set which props from state you need in this component.
 const mapStateToProps = (state) => {
     return {
-        decimalEnabled: state.controlsReducer.decimalEnabled,
+        decimalAdded: state.controlsReducer.decimalAdded,
     }
 };
 
@@ -62,7 +62,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, mapDispatchToProps)(Decimal);
 
 Decimal.propTypes = {
-    addValue: PropTypes.func.isRequired,
-    allowOperators: PropTypes.func.isRequired,
-    toggleDecimalValue: PropTypes.func.isRequired,
+    addValue: PropTypes.func,
+    allowOperators: PropTypes.func,
+    toggleDecimalValue: PropTypes.func,
 };

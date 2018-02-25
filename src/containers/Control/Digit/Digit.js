@@ -46,6 +46,6 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(null, mapDispatchToProps)(Digit);
 
 Digit.propTypes = {
-    addValue: PropTypes.func.isRequired,
-    allowOperators: PropTypes.func.isRequired,
+    addValue: PropTypes.func,
+    allowOperators: PropTypes.func,
 };

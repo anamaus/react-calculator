@@ -3,8 +3,27 @@ import reducer from "./controlsReducer";
 describe('result reducer', () => {
     it('should return the initial state', () => {
         expect(reducer(undefined, {})).toEqual({
-            decimalEnabled: false,
-            calculationAllowed: true,
+            decimalAdded: false,
+            calculationAllowed: false,
+            operatorsAllowed: false,
+            canCloseParenthesis: false,
+        })
+    });
+
+    it('should reset to initial state', () => {
+        expect(reducer(
+            {
+                decimalAdded: true,
+                calculationAllowed: true,
+                operatorsAllowed: true,
+                canCloseParenthesis: true,
+            },
+            {
+                type: 'CONTROLS_RESET_CONTROLS'
+            }
+        )).toEqual({
+            decimalAdded: false,
+            calculationAllowed: false,
             operatorsAllowed: false,
             canCloseParenthesis: false,
         })
@@ -13,8 +32,8 @@ describe('result reducer', () => {
     it('should set decimal enabled to true', () => {
         expect(reducer(
             {
-                decimalEnabled: false,
-                calculationAllowed: true,
+                decimalAdded: false,
+                calculationAllowed: false,
                 operatorsAllowed: false,
                 canCloseParenthesis: false,
             },
@@ -23,8 +42,8 @@ describe('result reducer', () => {
                 payload: true
             }
         )).toEqual({
-            decimalEnabled: true,
-            calculationAllowed: true,
+            decimalAdded: true,
+            calculationAllowed: false,
             operatorsAllowed: false,
             canCloseParenthesis: false,
         })
@@ -33,8 +52,8 @@ describe('result reducer', () => {
     it('should set allow calculation to false', () => {
         expect(reducer(
             {
-                decimalEnabled: false,
-                calculationAllowed: true,
+                decimalAdded: false,
+                calculationAllowed: false,
                 operatorsAllowed: false,
                 canCloseParenthesis: false,
             },
@@ -43,7 +62,7 @@ describe('result reducer', () => {
                 payload: false
             }
         )).toEqual({
-            decimalEnabled: false,
+            decimalAdded: false,
             calculationAllowed: false,
             operatorsAllowed: false,
             canCloseParenthesis: false,
@@ -53,8 +72,8 @@ describe('result reducer', () => {
     it('should set allow operators to true', () => {
         expect(reducer(
             {
-                decimalEnabled: false,
-                calculationAllowed: true,
+                decimalAdded: false,
+                calculationAllowed: false,
                 operatorsAllowed: false,
                 canCloseParenthesis: false,
             },
@@ -63,8 +82,8 @@ describe('result reducer', () => {
                 payload: true
             }
         )).toEqual({
-            decimalEnabled: false,
-            calculationAllowed: true,
+            decimalAdded: false,
+            calculationAllowed: false,
             operatorsAllowed: true,
             canCloseParenthesis: false,
         })
@@ -73,8 +92,8 @@ describe('result reducer', () => {
     it('should set close parenthesis possibility to true', () => {
         expect(reducer(
             {
-                decimalEnabled: false,
-                calculationAllowed: true,
+                decimalAdded: false,
+                calculationAllowed: false,
                 operatorsAllowed: false,
                 canCloseParenthesis: false,
             },
@@ -83,8 +102,8 @@ describe('result reducer', () => {
                 payload: true
             }
         )).toEqual({
-            decimalEnabled: false,
-            calculationAllowed: true,
+            decimalAdded: false,
+            calculationAllowed: false,
             operatorsAllowed: false,
             canCloseParenthesis: true,
         })

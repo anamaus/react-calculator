@@ -28,6 +28,13 @@ export const setCanCloseParenthesis = (bool) => {
     }
 };
 
+export const resetControls = () => {
+    return {
+        type: "CONTROLS_RESET_CONTROLS",
+    }
+};
+
+
 export const checkParenthesisNumber = () => {
     return (dispatch, getState) => {
         const {output} = getState().resultReducer;

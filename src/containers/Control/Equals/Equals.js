@@ -9,7 +9,7 @@ import {calculateResult} from "../../../actions/resultActions";
 //import library for calculations
 import math from 'mathjs';
 
-class Equals extends React.Component {
+export class Equals extends React.Component {
 
 
 
@@ -33,10 +33,9 @@ class Equals extends React.Component {
     render() {
         const classes = ['calculator-button'];
 
-        if (!this.props.calculationAllowed || !this.props.output.length) {
+        if (!this.props.calculationAllowed) {
             classes.push('calculator-button--disabled')
         }
-
 
         return (
             <button className={classes.join(' ')}
@@ -76,5 +75,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(Equals);
 Equals.propTypes = {
     output: PropTypes.array,
     calculationAllowed: PropTypes.bool,
-    calculateResult: PropTypes.func.isRequired,
+    calculateResult: PropTypes.func,
 };

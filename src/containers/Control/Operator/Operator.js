@@ -5,10 +5,10 @@ import {addValue} from "../../../actions/resultActions";
 import {allowCalculation, allowOperators, checkParenthesisNumber, setCanCloseParenthesis, toggleDecimalValue} from "../../../actions/controlsActions";
 import {connect} from "react-redux";
 
-class Operator extends React.Component {
+export class Operator extends React.Component {
 
     clickHandler = (event) => {
-        if (this.props.decimalEnabled) {
+        if (this.props.decimalAdded) {
             this.props.toggleDecimalValue(false);
         }
 
@@ -28,7 +28,7 @@ class Operator extends React.Component {
     render() {
         const classes = ['calculator-button', 'calculator-button--accented'];
 
-        if (!this.props.operatorsAllowed || !this.props.output.length) {
+        if (!this.props.operatorsAllowed) {
             classes.push('calculator-button--disabled')
         }
 
@@ -49,7 +49,7 @@ const mapStateToProps = (state) => {
     return {
         output: state.resultReducer.output,
         operatorsAllowed: state.controlsReducer.operatorsAllowed,
-        decimalEnabled: state.controlsReducer.decimalEnabled,
+        decimalAdded: state.controlsReducer.decimalAdded,
     }
 };
 
@@ -81,10 +81,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(Operator);
 Operator.propTypes = {
     output: PropTypes.array,
     operatorsAllowed: PropTypes.bool,
-    decimalEnabled: PropTypes.bool,
-    addValue: PropTypes.func.isRequired,
-    toggleDecimalValue: PropTypes.func.isRequired,
-    allowCalculation: PropTypes.func.isRequired,
-    setCanCloseParenthesis: PropTypes.func.isRequired,
-    allowOperators: PropTypes.func.isRequired,
+    decimalAdded: PropTypes.bool,
+    addValue: PropTypes.func,
+    toggleDecimalValue: PropTypes.func,
+    allowCalculation: PropTypes.func,
+    setCanCloseParenthesis: PropTypes.func,
+    allowOperators: PropTypes.func,
 };

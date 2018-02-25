@@ -2,27 +2,26 @@ import React from 'react';
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { Clear } from './Clear';
+import { Decimal } from './Decimal';
 
 //connect enzyme
 configure({adapter: new Adapter()});
 
 
-describe('Clear button', () => {
+describe('Decimal button', () => {
     let wrapper;
 
     beforeEach(() => {
-         wrapper = shallow(<Clear output={[]}/>);
+         wrapper = shallow(<Decimal />);
     });
 
-    it('should have class disabled if there is no output', () => {
+    it('should have decimal disabled', () => {
+        wrapper.setProps({decimalAdded: true });
         expect(wrapper.find('button').hasClass('calculator-button--disabled')).toBeTruthy();
-
     });
 
-    it('should not have class disabled if there is some output', () => {
-        wrapper.setProps({output: [{value: '1'}]});
+    it('should not have decimal disabled', () => {
+        wrapper.setProps({decimalAdded: false });
         expect(wrapper.find('button').hasClass('calculator-button--disabled')).toBeFalsy();
-
     });
 });

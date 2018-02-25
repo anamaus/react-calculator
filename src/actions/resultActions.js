@@ -12,9 +12,9 @@ export const calculateResult = (result) => {
     }
 };
 
-export const resetCalculator = () => {
+export const resetResult = () => {
     return {
-        type: "RESULT_RESET_CALCULATOR",
+        type: "RESULT_RESET_RESULT",
     }
 };
 

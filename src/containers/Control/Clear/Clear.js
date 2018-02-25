@@ -26,7 +26,7 @@ export class Clear extends React.Component {
     render() {
         const classes = ['calculator-button'];
 
-        if ( !this.props.output.length) {
+        if (!this.props.output.length) {
             classes.push('calculator-button--disabled')
         }
 
@@ -74,11 +74,11 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(Clear);
 
 Clear.propTypes = {
-    output: PropTypes.array.isRequired,
+    output: PropTypes.array,
     lastValue: PropTypes.object,
-    removeLastValue: PropTypes.func.isRequired,
-    allowCalculation: PropTypes.func.isRequired,
-    setLastValue: PropTypes.func.isRequired,
-    setCanCloseParenthesis: PropTypes.func.isRequired,
+    removeLastValue: PropTypes.func,
+    allowCalculation: PropTypes.func,
+    setLastValue: PropTypes.func,
+    setCanCloseParenthesis: PropTypes.func,
 
 };

@@ -35,7 +35,7 @@ describe('result reducer', () => {
                 lastValue: {}
             },
             {
-                type: 'RESULT_RESET_CALCULATOR'
+                type: 'RESULT_RESET_RESULT'
             }
             )).toEqual({
             output: [],

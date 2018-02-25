@@ -1,6 +1,6 @@
 const initialState = {
-    decimalEnabled: false,
-    calculationAllowed: true,
+    decimalAdded: false,
+    calculationAllowed: false,
     operatorsAllowed: false,
     canCloseParenthesis: false,
 };
@@ -10,7 +10,7 @@ const controlsReducer = (state = initialState, action) => {
         case "CONTROLS_TOGGLE_DECIMAL_VALUE":
             return {
                 ...state,
-                decimalEnabled: action.payload
+                decimalAdded: action.payload
             };
         case "CONTROLS_ALLOW_CALCULATION":
             return {
@@ -27,6 +27,9 @@ const controlsReducer = (state = initialState, action) => {
                 ...state,
                 canCloseParenthesis: action.payload,
             };
+        case "CONTROLS_RESET_CONTROLS":
+            return initialState;
+
         default: return state;
     }
 };
