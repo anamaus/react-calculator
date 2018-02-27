@@ -1,13 +1,20 @@
 //Redux
 import {createStore, applyMiddleware} from "redux";
 
-//import 3rd party middleware logger
-import { createLogger } from 'redux-logger';
+//import reducers
+import combinedReducers from "./reducers/index.js";
 
 //import thunk  middleware for async actions
 import thunk from 'redux-thunk';
 
-//import reducers
-import combinedReducers from "./reducers/index.js";
+const middlewares = [thunk];
 
-export default createStore(combinedReducers, {}, applyMiddleware(createLogger(), thunk));
+
+//import 3rd party middleware logger
+if (process.env.NODE_ENV === `development`) {
+    const { logger } = require(`redux-logger`);
+
+    middlewares.push(logger);
+}
+
+export default createStore(combinedReducers, {}, applyMiddleware(...middlewares));
